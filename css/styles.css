@@ -1,0 +1,452 @@
+html {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Sunflower', sans-serif;
+}
+
+.container {
+    width: 500px;
+    height: 655px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 3px solid #FFFFFF;
+    border-right: 3px solid #FFFFFF;
+    border-bottom: 3px solid #FFFFFF;
+    border-radius: 8px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 3px;
+}
+
+#progress-bar-change {
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.sound-score-panel {
+    height: 10%;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #FFFFFF;
+    font-size: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.equation {
+    height: 53%;
+    color: #FFFFFF;
+    font-size: 120px;
+    text-align: center;
+}
+
+/*
+ * Two cards to choose from: check, cross
+ */
+.choice {
+    height: 37%;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.choice .card {
+    width: 240px;
+    height: 230px;
+    background: #ECF0F1;
+    border-radius: 10px;
+    box-shadow: 0px 5px #BDC3C7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice .card.clicked-correct {
+    background: #3498DB;
+}
+
+.choice .card.clicked-wrong {
+    background: #E74C3C;
+}
+
+.choice .card.judge-right {
+    -webkit-animation: judge-right-tada 1s linear 1;
+    animation: judge-right-tada 1s linear 1;
+}
+
+.choice .card.judge-wrong {
+    -webkit-animation: judge-wrong-shake 1s linear 1;
+    animation: judge-wrong-shake 1s linear 1;
+}
+
+#choice-correct {
+    font-size: 200px;
+    color: #3498DB;
+}
+
+#choice-wrong {
+    font-size: 225px;
+    color: #E74C3C;
+}
+
+/*
+ * Animation when judge correctly
+ * Source: https://github.com/daneden/animate.css/blob/master/animate.css
+ */
+@-webkit-keyframes judge-right-tada {
+    from,
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    10%,
+    20% {
+       -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+       transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg); 
+    }
+
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    }
+
+    40%,
+    60%,
+    80% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+}
+
+@keyframes match-tada {
+    from,
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    10%,
+    20% {
+       -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+       transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg); 
+    }
+
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    }
+
+    40%,
+    60%,
+    80% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+}
+
+/*
+ * Animation when judge wrongly
+ * Source: https://github.com/daneden/animate.css/blob/master/animate.css
+ */
+@-webkit-keyframes judge-wrong-shake {
+    from,
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+@keyframes unmatch-shake {
+    from,
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+/*
+ * Game start modal
+ */
+.start-modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #2C3E50; /* Fallback color */
+}
+
+.start-modal-content {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.game-name {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.name-span {
+    color: #FFFFFF;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 45%;
+}
+
+#name-freaking {
+    font-size: 60px;
+}
+
+#name-math {
+    font-size: 60px;
+}
+
+.game-start {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    background: #ECF0F1;
+    border-radius: 10px;
+    box-shadow: 0px 5px #BDC3C7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-start-button {
+    color: #3498DB;
+    font-size: 35px;
+}
+
+/* 
+ * Game end Modal
+ */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+}
+
+.modal-content {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    margin-top: 90px;
+}
+
+.game-end {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 180px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 40px;
+    color: #FFFFFF;
+    background: #34495E;
+    border-radius: 10px;
+    box-shadow: 0px 5px #2C3E50;
+}
+
+.game-end-component {
+    text-align: center;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-text {
+    color: #BDC3C7;
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.restart-home-panel {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.restart-home-panel .card {
+    width: 120px;
+    margin-left: 4px;
+    margin-right: 4px;
+    height: 50px;
+    background: #ECF0F1;
+    border-radius: 10px;
+    box-shadow: 0px 5px #BDC3C7;
+    font-size: 30px;
+    color: #3498DB;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*
+ * Mobile screen
+ */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 310px;
+        height: 425px;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sound-score-panel {
+        font-size: 30px;
+    }
+
+    .equation {
+        font-size: 90px;
+    }
+
+    .choice {
+        margin-top: 5px;
+    }
+
+    .choice .card {
+        width: 140px;
+        height: 140px;
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    #choice-correct {
+        font-size: 110px;
+    }
+
+    #choice-wrong {
+        font-size: 120px;
+    }
+
+    /*
+     * Game start modal
+     */
+    .start-modal-content {
+        width: 310px;
+    }
+
+    .game-name {
+        width: 230px;
+    }
+
+    #name-freaking {
+        font-size: 45px;
+    }
+
+    #name-math {
+        font-size: 45px;
+    }
+
+
+    /*
+     * Game end modal
+     */
+    .modal-content {
+        width: 310px;
+        margin-top: 20px;
+    }
+
+    .game-end {
+        width: 230px;
+        height: 150px;
+        font-size: 30px;
+    }
+
+    .score-text {
+        font-size: 15px;
+    }
+
+    .restart-home-panel {
+        width: 230px;
+        height: 70px;
+    }
+
+    .restart-home-panel .card {
+        width: 80px;
+        height: 35px;
+        font-size: 20px;
+    }
+}
